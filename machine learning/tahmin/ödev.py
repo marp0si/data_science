@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Jan 15 12:53:09 2022
-
-@author: _S1n4n_
-"""
-
 
 #1.kutuphaneler
 import numpy as np
@@ -13,7 +6,7 @@ import pandas as pd
 
 #2.veri onisleme
 #2.1.veri yukleme
-veriler = pd.read_csv('veriler.csv')
+veriler = pd.read_excel('Iris.xls')
 #pd.read_csv("veriler.csv")
 #test
 #print(veriler)
@@ -25,7 +18,7 @@ y = veriler.iloc[:,4:].values #bağımlı değişken
 #verilerin egitim ve test icin bolunmesi
 from sklearn.model_selection import train_test_split
 
-x_train, x_test,y_train,y_test = train_test_split(x,y,test_size=0.3, random_state=0)
+x_train, x_test,y_train,y_test = train_test_split(x,y,test_size=0.33, random_state=0)
 
 #verilerin olceklenmesi
 from sklearn.preprocessing import StandardScaler
@@ -41,8 +34,8 @@ logr = LogisticRegression(random_state=0)
 logr.fit(X_train,y_train)
 
 y_pred = logr.predict(X_test)
-print(y_pred)
-print(y_test)
+#print(y_pred)
+#print(y_test)
 
 
 from sklearn.metrics import confusion_matrix
@@ -72,6 +65,7 @@ y_pred = svc.predict(X_test)
 cm = confusion_matrix(y_test,y_pred)
 print('SVC')
 print(cm)
+
 
 
 from sklearn.naive_bayes import GaussianNB
@@ -106,9 +100,9 @@ print('RFC')
 print(cm)
 
 
-'''
+    
 # 7. ROC , TPR, FPR değerleri 
-
+'''
 y_proba = rfc.predict_proba(X_test)
 print(y_test)
 print(y_proba[:,0])
