@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import imageio
 
-face_cascade=cv2.CascadeClassifier("haarcascade-frontalface-default.xml")
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascade+'./haarcascade_frontalface_default.xml')
 
 def detect(frame):
     gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
