@@ -105,6 +105,11 @@ def naive_dot_matrixs(x,y):
             z[i, j] = naive_vector_dot(row_x, column_y)
     return z
 print(naive_dot_matrixs(x,y)) #[70 174]
-'''
+        '''
 
+import tensorflow as tf
+x1 = tf.Variable(0.)
+with tf.GradientTape() as tape:
+    y1 = 2 * x1 + 3
+grad_of_y_wrt_x1 = tape.gradient(y1, x1)
 
