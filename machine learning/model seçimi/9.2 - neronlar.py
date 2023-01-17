@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Jul  6 18:50:13 2020
 
-@author: sadievrenseker
-"""
 
 #1.kutuphaneler
 import numpy as np
@@ -66,7 +62,7 @@ from keras.layers import Dense
 
 classifier = Sequential()
 
-classifier.add(Dense(6, init = 'uniform', activation = 'relu' , input_dim = 11))
+classifier.add(Dense(6, init = 'uniform', activation = 'relu' , input_dim = 25))
 
 classifier.add(Dense(6, init = 'uniform', activation = 'relu'))
 
