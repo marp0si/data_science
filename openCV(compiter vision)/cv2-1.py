@@ -22,6 +22,7 @@ def video(cap):
             cv2.imshow('Frame', frame)
             #frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) 
             if cv2.waitKey(25) & 0xFF == ord('q'):
+                closeAll()
                 break
         else:
             closeAll()
