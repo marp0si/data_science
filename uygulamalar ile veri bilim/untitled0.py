@@ -64,16 +64,17 @@ def rmse_hesapla(tahmin,referans_Veri):
     return sqrt(mean_squared_error(tahmin, referans_Veri))
 # rmse değerlendirme ölçütünün hesaplanması
 from sklearn import model_selection as ms
-train,test=ms.train_test_split(df,test_size=21)
+train,test=ms.train_test_split(df,test_size=0.30)
 
 kuMatrix_train=np.zeros((kullanıcı_say,film_say))
 for line in train.itertuples():
-    kuMatrix_train[[line[1]-1,line[2]-1]]=line[3]
+    kuMatrix_train[line[1]-1,line[2]-1]=line[3]
 
 kuMatrix_test=np.zeros((kullanıcı_say,film_say))
 for line in test.itertuples():
-    kuMatrix_test[[line[1]-1,line[2]-1]]=line[3]
+    kuMatrix_test[line[1]-1,line[2]-1]=line[3]
 #kullanıcılar arası benzerlik hesaplama
 from sklearn.metrics.pairwise import pairwise_distances
 kullanıcı_benzerlik=pairwise_distances(kuMatrix_train,metric='cosine')
 kullanıcı_tahmin=tahmin(kuMatrix_train,kullanıcı_benzerlik)
+print(kullanıcı_tahmin)
