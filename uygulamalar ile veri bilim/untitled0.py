@@ -61,8 +61,8 @@ U,S,vt=svds(kuMatris,k=30)
 from sklearn.metrics import mean_squared_error
 from math import sqrt
 def rmse_hesapla(tahmin,referans_Veri):
-    tahmin=tahmin[referans_Veri.nonzero()].fatten()
-    referans_Veri=referans_Veri[referans_Veri.nonzero()].fatten()
+    tahmin=tahmin[referans_Veri.nonzero()].flatten()
+    referans_Veri=referans_Veri[referans_Veri.nonzero()].flatten()
     return sqrt(mean_squared_error(tahmin, referans_Veri))
 # rmse değerlendirme ölçütünün hesaplanması
 from sklearn import model_selection as ms
@@ -79,4 +79,11 @@ for line in test.itertuples():
 from sklearn.metrics.pairwise import pairwise_distances
 kullanıcı_benzerlik=pairwise_distances(kuMatrix_train,metric='cosine')
 kullanıcı_tahmin=tahmin(kuMatrix_train,kullanıcı_benzerlik)
-print(kullanıcı_tahmin)
+print(kullanıcı_tahmin[:5])
+
+from scipy.sparse.linalg import svds
+u,s,Vt=svds(kuMatrix_train,k=30)
+
+s_diag=np.diag(s)
+svd_tahmin=np.dot(np.dot(u, s_diag), Vt)
+print('SVD rmse: '+str(rmse_hesapla(svd_tahmin,kuMatrix_test)))
